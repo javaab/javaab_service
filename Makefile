@@ -12,9 +12,6 @@ run:
 
 check:
 	make cmd run="py.test"
-	
-sniffer:
-	make cmd_no_deps run=sniffer
 
 lint:
 	make cmd run="pylint $(PACKAGE_NAME)"
