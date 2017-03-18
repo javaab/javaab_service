@@ -1,0 +1,39 @@
+#####
+# Circle CI
+# 
+# For running docker images on circle ci, see: https://circleci.com/docs/docker
+# For circle.yml explanation, see: https://circleci.com/docs/manually
+# Python specific configuration, see: https://circleci.com/docs/language-python
+#####
+
+
+# Newer version of docker-compose
+machine:
+    services:
+        - docker
+    pre:
+      - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+
+dependencies:
+    pre:
+        - pip install docker-compose
+        - pip install sphinx
+        - pip install -r config/requirements/test.txt
+
+test:
+    override:
+#       # Run Django Tests
+#       # Need to save junit results inside app within docker container then copy to CIRCLE_TEST_REPORTS
+#       - mkdir -p circle-junit/django
+#       - py.test --junitxml=circle-junit/django/junit.xml tests/
+#   - py.test --cov --cov-report html:$CIRCLE_TEST_REPORTS --junitxml=circle-junit/django/junit.xml tests/
+      
+#       - mkdir -p $CIRCLE_TEST_REPORTS/django
+#       - mv circle-junit/django $CIRCLE_TEST_REPORTS/
+        - cd docs && make html coverage
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - ./deploy_docs.sh docs/build/html
