@@ -17,11 +17,17 @@ function checkLastCommand
 }  
 
 if [ "$1" = 'app' ]; then
-	#sudo pip install --upgrade pip setuptools
-	#sudo pip install -e .
-	#tail -f CHANGES.txt
-	#sudo pip install -e ".[testing]"
-	pserve $APP_DIR/development.ini --reload
+	## George: Run tornado server here
+
+
+
+
+
+	# Pyramid 
+	#pserve $APP_DIR/development.ini --reload
+
+
+
 
 
 

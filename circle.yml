@@ -20,8 +20,8 @@ dependencies:
         - pip install sphinx
         - pip install -r config/requirements/test.txt
 
-test:
-    override:
+#test:
+#    override:
 #       # Run Django Tests
 #       # Need to save junit results inside app within docker container then copy to CIRCLE_TEST_REPORTS
 #       - mkdir -p circle-junit/django
@@ -30,10 +30,12 @@ test:
       
 #       - mkdir -p $CIRCLE_TEST_REPORTS/django
 #       - mv circle-junit/django $CIRCLE_TEST_REPORTS/
-        - cd docs && make html coverage
+#       - cd docs && make html coverage
 
-deployment:
-  production:
-    branch: master
-    commands:
-      - ./deploy_docs.sh docs/build/html
+
+### If test pass - deploy and run documentation
+# deployment:
+#   production:
+#     branch: master
+#     commands:
+#       - ./deploy_docs.sh docs/build/html
