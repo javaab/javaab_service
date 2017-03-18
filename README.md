@@ -15,6 +15,10 @@ make
 
 
 
+We need a way to import modified python services and packages (i.e. local )
+
+
+
 
 # TODO
 - Sort out documentation (James Tarball will sort this once inter-comms is working)
